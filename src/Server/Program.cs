@@ -1,17 +1,25 @@
-﻿using Grpc.Core;
+﻿using Server.Services;
+using Shared.GRpc.Greet;
+using gRpc = Grpc.Core;
 
 
 const string ip = "127.0.0.1";
 const int port = 50051;
-Server? server = null;
+gRpc.Server? server = null;
 
 try
 {
-    server = new Server()
+    server = new gRpc.Server()
     {
-        Ports = {
-        new ServerPort(ip, port, ServerCredentials.Insecure)
-    }
+        Ports = 
+        {
+            new gRpc.ServerPort(ip, port, gRpc.ServerCredentials.Insecure)
+        },
+        Services =
+        {
+            GreetingService.BindService(new GreetingServiceImpl())
+        }
+        
     };
     server.Start();
 

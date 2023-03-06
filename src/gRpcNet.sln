@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proto", "Proto", "{E9628D70-B98F-4E91-80B6-E57BBCFA9551}"
 	ProjectSection(SolutionItems) = preProject
 		Proto\Dummy.proto = Proto\Dummy.proto
+		Proto\Greeting.proto = Proto\Greeting.proto
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{35BE9EDD-1792-4D99-9314-97EAC7F891BA}"
