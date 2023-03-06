@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package Shared.gRpc.Dummy;
+
+message DummyMessage {}
+
+service DummyService {}
