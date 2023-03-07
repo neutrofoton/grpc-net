@@ -49,10 +49,6 @@ namespace Shared.GRpc.Greet {
     static readonly grpc::Marshaller<global::Shared.GRpc.Greet.GreetingRequest> __Marshaller_Shared_gRpc_Greet_GreetingRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Shared.GRpc.Greet.GreetingRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Shared.GRpc.Greet.GreetingResponse> __Marshaller_Shared_gRpc_Greet_GreetingResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Shared.GRpc.Greet.GreetingResponse.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Shared.GRpc.Greet.GreetingManyTimesRequest> __Marshaller_Shared_gRpc_Greet_GreetingManyTimesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Shared.GRpc.Greet.GreetingManyTimesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Shared.GRpc.Greet.GreetingManyTimesResponse> __Marshaller_Shared_gRpc_Greet_GreetingManyTimesResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Shared.GRpc.Greet.GreetingManyTimesResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> __Method_Greet = new grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(
@@ -63,12 +59,28 @@ namespace Shared.GRpc.Greet {
         __Marshaller_Shared_gRpc_Greet_GreetingResponse);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Shared.GRpc.Greet.GreetingManyTimesRequest, global::Shared.GRpc.Greet.GreetingManyTimesResponse> __Method_GreetManyTimes = new grpc::Method<global::Shared.GRpc.Greet.GreetingManyTimesRequest, global::Shared.GRpc.Greet.GreetingManyTimesResponse>(
+    static readonly grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> __Method_GreetOneRequestMultiResponse = new grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(
         grpc::MethodType.ServerStreaming,
         __ServiceName,
-        "GreetManyTimes",
-        __Marshaller_Shared_gRpc_Greet_GreetingManyTimesRequest,
-        __Marshaller_Shared_gRpc_Greet_GreetingManyTimesResponse);
+        "GreetOneRequestMultiResponse",
+        __Marshaller_Shared_gRpc_Greet_GreetingRequest,
+        __Marshaller_Shared_gRpc_Greet_GreetingResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> __Method_GreetMultiRequestOneResponse = new grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(
+        grpc::MethodType.ClientStreaming,
+        __ServiceName,
+        "GreetMultiRequestOneResponse",
+        __Marshaller_Shared_gRpc_Greet_GreetingRequest,
+        __Marshaller_Shared_gRpc_Greet_GreetingResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> __Method_GreetMultiRequestMultiResponse = new grpc::Method<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(
+        grpc::MethodType.DuplexStreaming,
+        __ServiceName,
+        "GreetMultiRequestMultiResponse",
+        __Marshaller_Shared_gRpc_Greet_GreetingRequest,
+        __Marshaller_Shared_gRpc_Greet_GreetingResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -100,7 +112,32 @@ namespace Shared.GRpc.Greet {
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>A task indicating completion of the handler.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task GreetManyTimes(global::Shared.GRpc.Greet.GreetingManyTimesRequest request, grpc::IServerStreamWriter<global::Shared.GRpc.Greet.GreetingManyTimesResponse> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task GreetOneRequestMultiResponse(global::Shared.GRpc.Greet.GreetingRequest request, grpc::IServerStreamWriter<global::Shared.GRpc.Greet.GreetingResponse> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///client streaming
+      /// </summary>
+      /// <param name="requestStream">Used for reading requests from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Shared.GRpc.Greet.GreetingResponse> GreetMultiRequestOneResponse(grpc::IAsyncStreamReader<global::Shared.GRpc.Greet.GreetingRequest> requestStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///bidirectional streaming
+      /// </summary>
+      /// <param name="requestStream">Used for reading requests from the client.</param>
+      /// <param name="responseStream">Used for sending responses back to the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>A task indicating completion of the handler.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task GreetMultiRequestMultiResponse(grpc::IAsyncStreamReader<global::Shared.GRpc.Greet.GreetingRequest> requestStream, grpc::IServerStreamWriter<global::Shared.GRpc.Greet.GreetingResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -191,9 +228,9 @@ namespace Shared.GRpc.Greet {
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::Shared.GRpc.Greet.GreetingManyTimesResponse> GreetManyTimes(global::Shared.GRpc.Greet.GreetingManyTimesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncServerStreamingCall<global::Shared.GRpc.Greet.GreetingResponse> GreetOneRequestMultiResponse(global::Shared.GRpc.Greet.GreetingRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return GreetManyTimes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GreetOneRequestMultiResponse(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       /// <summary>
       ///server streaming
@@ -202,9 +239,53 @@ namespace Shared.GRpc.Greet {
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::Shared.GRpc.Greet.GreetingManyTimesResponse> GreetManyTimes(global::Shared.GRpc.Greet.GreetingManyTimesRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncServerStreamingCall<global::Shared.GRpc.Greet.GreetingResponse> GreetOneRequestMultiResponse(global::Shared.GRpc.Greet.GreetingRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncServerStreamingCall(__Method_GreetManyTimes, null, options, request);
+        return CallInvoker.AsyncServerStreamingCall(__Method_GreetOneRequestMultiResponse, null, options, request);
+      }
+      /// <summary>
+      ///client streaming
+      /// </summary>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncClientStreamingCall<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> GreetMultiRequestOneResponse(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GreetMultiRequestOneResponse(new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///client streaming
+      /// </summary>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncClientStreamingCall<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> GreetMultiRequestOneResponse(grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncClientStreamingCall(__Method_GreetMultiRequestOneResponse, null, options);
+      }
+      /// <summary>
+      ///bidirectional streaming
+      /// </summary>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> GreetMultiRequestMultiResponse(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GreetMultiRequestMultiResponse(new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///bidirectional streaming
+      /// </summary>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse> GreetMultiRequestMultiResponse(grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_GreetMultiRequestMultiResponse, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -221,7 +302,9 @@ namespace Shared.GRpc.Greet {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_Greet, serviceImpl.Greet)
-          .AddMethod(__Method_GreetManyTimes, serviceImpl.GreetManyTimes).Build();
+          .AddMethod(__Method_GreetOneRequestMultiResponse, serviceImpl.GreetOneRequestMultiResponse)
+          .AddMethod(__Method_GreetMultiRequestOneResponse, serviceImpl.GreetMultiRequestOneResponse)
+          .AddMethod(__Method_GreetMultiRequestMultiResponse, serviceImpl.GreetMultiRequestMultiResponse).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -232,7 +315,9 @@ namespace Shared.GRpc.Greet {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, GreetingServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_Greet, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(serviceImpl.Greet));
-      serviceBinder.AddMethod(__Method_GreetManyTimes, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Shared.GRpc.Greet.GreetingManyTimesRequest, global::Shared.GRpc.Greet.GreetingManyTimesResponse>(serviceImpl.GreetManyTimes));
+      serviceBinder.AddMethod(__Method_GreetOneRequestMultiResponse, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(serviceImpl.GreetOneRequestMultiResponse));
+      serviceBinder.AddMethod(__Method_GreetMultiRequestOneResponse, serviceImpl == null ? null : new grpc::ClientStreamingServerMethod<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(serviceImpl.GreetMultiRequestOneResponse));
+      serviceBinder.AddMethod(__Method_GreetMultiRequestMultiResponse, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Shared.GRpc.Greet.GreetingRequest, global::Shared.GRpc.Greet.GreetingResponse>(serviceImpl.GreetMultiRequestMultiResponse));
     }
 
   }

@@ -1,4 +1,5 @@
-﻿using Grpc.Core;
+﻿using FizzWare.NBuilder;
+using Grpc.Core;
 using Shared.GRpc.Dummy;
 using Shared.GRpc.Greet;
 
@@ -14,36 +15,74 @@ channel.ConnectAsync().ContinueWith(task =>
 
 var clientDummy = new DummyService.DummyServiceClient(channel);
 
-//unary
-var clientUnary=new GreetingService.GreetingServiceClient(channel);
-var hello = clientUnary.GreetAsync(new GreetingRequest()
+
+//parameter input
+var greetingRequest = new GreetingRequest()
 {
     Greeting = new Greeting()
     {
         FirstName = "neutro",
         LastName = "foton"
     }
-}).GetAwaiter().GetResult().Result;
-Console.WriteLine($"Grpc Unary : {hello}");
+};
+
+var grpcApi = new GreetingService.GreetingServiceClient(channel);
+
+//unary streaming
+Console.WriteLine($"=============={"unary streaming"}==========");
+AsyncUnaryCall<GreetingResponse> unaryStreaming = grpcApi.GreetAsync(greetingRequest);
+
+var hello = unaryStreaming.GetAwaiter().GetResult().Result;
+Console.WriteLine($"{Environment.NewLine}Grpc Unary : {hello}");
 
 
 //server streaming
-var clientServerStreaming = new GreetingService.GreetingServiceClient(channel);
-var responseStream = clientServerStreaming.GreetManyTimes(new GreetingManyTimesRequest()
-{
-    Greeting = new Greeting()
-    {
-        FirstName = "neutro",
-        LastName = "foton"
-    }
-});
+Console.WriteLine($"=============={"server streaming"}==========");
+AsyncServerStreamingCall<GreetingResponse> serverStreaming = grpcApi.GreetOneRequestMultiResponse(greetingRequest);
 
-while(await responseStream.ResponseStream.MoveNext())
+Console.WriteLine($"{Environment.NewLine}Grpc Server Streaming :");
+while (await serverStreaming.ResponseStream.MoveNext())
 {
-    Console.WriteLine(responseStream.ResponseStream.Current.Result);
+    Console.WriteLine(serverStreaming.ResponseStream.Current.Result);
 }
 
 
-channel.ShutdownAsync().Wait();
+//client streaming
+Console.WriteLine($"=============={"client streaming"}==========");
+AsyncClientStreamingCall<GreetingRequest, GreetingResponse> clientStreaming = grpcApi.GreetMultiRequestOneResponse();
 
+foreach (int i in Enumerable.Range(1, 10))
+{
+    await clientStreaming.RequestStream.WriteAsync(greetingRequest);
+}
+
+await clientStreaming.RequestStream.CompleteAsync();
+Console.WriteLine(clientStreaming.ResponseAsync.Result);
+
+//bidirectional streaming
+Console.WriteLine($"=============={"bidirectional streaming"}==========");
+AsyncDuplexStreamingCall<GreetingRequest, GreetingResponse> bidirectionalStreaming = grpcApi.GreetMultiRequestMultiResponse();
+
+var responseReaderTask = Task.Run(async () =>
+{
+    while (await bidirectionalStreaming.ResponseStream.MoveNext())
+    {
+        Console.WriteLine($"Received: {bidirectionalStreaming.ResponseStream.Current.Result}");
+    }
+});
+
+IList<Greeting> greetings = Builder<Greeting>.CreateListOfSize(10).Build();
+foreach (var g in greetings)
+{
+    Console.WriteLine($"Sending: {g.Index} | {g.FirstName} {g.LastName}");
+    await bidirectionalStreaming.RequestStream.WriteAsync(new GreetingRequest()
+    {
+        Greeting = g
+    });
+}
+
+await bidirectionalStreaming.RequestStream.CompleteAsync();
+
+//=======================================================
+channel.ShutdownAsync().Wait();
 Console.ReadLine();

@@ -16,7 +16,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Protobuf Include="../Proto/*.proto" OutputDir="%(RelativePath)gRpc/" />
+    <Protobuf Include="../Proto/*.proto" OutputDir="%(RelativePath)gRpc" CompileOutputs="false" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="gRpc\" />
   </ItemGroup>
 
 </Project>
